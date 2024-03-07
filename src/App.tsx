@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import InputForm from "./components/inputField";
-import HeadAndRefresh from "./components/headAndRefresh";
-import Card from "./components/card";
 import "./App.css";
+import Header from "./components/header";
+import NoteForm from "./components/NoteForm";
+import NoteList from "./components/NoteList";
 const App: React.FC = () => {
   type initialCards = {
     id: number;
@@ -58,7 +58,6 @@ const App: React.FC = () => {
 
   const handleDeleteCard = (id: number) => {
     deleteNote(id);
-    getNotes();
   };
 
   const [inputValue, setInputValue] = useState("");
@@ -79,25 +78,14 @@ const App: React.FC = () => {
     <>
       <div className='App'>
         <div>
-          <div className='head'>
-            <HeadAndRefresh onButtonClick={handleButtonClick} />
-          </div>
-          <InputForm
+          <Header onButtonClick={handleButtonClick} />
+          <NoteForm
             handleSubmit={handleSubmit}
             inputValue={inputValue}
             setInputValue={setInputValue}
           />
         </div>
-        <div className='cards'>
-          {initialCards.map((card) => (
-            <Card
-              key={card.id}
-              content={card.content}
-              onDelete={() => handleDeleteCard(card.id)}
-              id={card.id}
-            />
-          ))}
-        </div>
+        <NoteList initialCards={initialCards} onDelete={handleDeleteCard} />
       </div>
     </>
   );

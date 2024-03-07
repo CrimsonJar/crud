@@ -1,4 +1,3 @@
-// CardWithButton.tsx
 import React from "react";
 
 type HeadAndRefreshProps = {

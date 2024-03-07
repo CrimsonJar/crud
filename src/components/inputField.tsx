@@ -18,7 +18,7 @@ const InputForm: React.FC<InputFormProps> = ({
         <div>
           <Form.Label>New note</Form.Label>
           <Form.Control
-            type='text'
+            type='textarea'
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder='Enter text'
